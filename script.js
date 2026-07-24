@@ -4,11 +4,11 @@ const categories = [
     icon: "👶",
     color: "#4F8CFF",
     description: `
-        👶 Vor ihrer Geburt (bis 1993)<br>
-        💚 Vor ihrer Beziehung (1994–2010)<br>
-        🏡 Vor dem Zusammenziehen (2011–2017)<br>
-        🏠 Nach dem Zusammenziehen (2018–2024)<br>
-        💍 Nach der Verlobung (ab 2025)
+        👶 bis 1993<br>
+        💚 1994–2010<br>
+        🏡 2011–2017<br>
+        🏠 2018–2024<br>
+        💍 ab 2025
     `
 },
 {
@@ -20,7 +20,7 @@ const categories = [
 {
     title: "INTERPRET",
     icon: "🎤",
-    color: "#38D26B",
+    color: "#39D273",
     description: "Nenne den Interpreten oder die Band."
 },
 {
@@ -37,84 +37,103 @@ const categories = [
 }
 ];
 
-// ----- Elemente -----
-
-const button = document.getElementById("drawButton");
-const ball = document.getElementById("ball");
+const drawButton = document.getElementById("drawButton");
+const discoball = document.getElementById("discoball");
 
 const result = document.getElementById("result");
-const icon = document.getElementById("icon");
-const title = document.getElementById("title");
-const description = document.getElementById("description");
+const categoryIcon = document.getElementById("categoryIcon");
+const categoryTitle = document.getElementById("categoryTitle");
+const categoryDescription = document.getElementById("categoryDescription");
 
-// ----- Faire Zufallsverteilung -----
+const roundNumber = document.getElementById("roundNumber");
 
-let bag = [];
+let round = 1;
+let lastCategory = null;
 
-function refillBag(){
+function randomCategory(){
 
-    bag = [];
+    let next;
 
-    categories.forEach(category => {
+    do{
 
-        for(let i = 0; i < 4; i++){
+        next = categories[Math.floor(Math.random()*categories.length)];
 
-            bag.push(category);
+    }while(next === lastCategory);
 
-        }
+    lastCategory = next;
 
-    });
-
-    shuffle(bag);
-
-}
-
-function shuffle(array){
-
-    for(let i = array.length - 1; i > 0; i--){
-
-        const j = Math.floor(Math.random() * (i + 1));
-
-        [array[i], array[j]] = [array[j], array[i]];
-
-    }
+    return next;
 
 }
 
-refillBag();
+drawButton.addEventListener("click", startDraw);
 
-// ----- Klick -----
+function startDraw(){
 
-button.addEventListener("click", () => {
+    drawButton.disabled = true;
 
-    if(bag.length === 0){
+    result.classList.add("hidden");
 
-        refillBag();
+    discoball.classList.remove("spin");
 
-    }
+    void discoball.offsetWidth;
 
-    button.disabled = true;
+    discoball.classList.add("spin");
 
-    ball.classList.remove("spin");
-    void ball.offsetWidth;
-    ball.classList.add("spin");
+    drawButton.innerHTML = "⏳ 3...";
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
-        const category = bag.pop();
+        drawButton.innerHTML="⏳ 2...";
 
-        icon.innerHTML = category.icon;
-        title.innerHTML = category.title;
-        description.innerHTML = category.description;
+    },500);
 
-        result.style.display = "block";
-        result.style.background = category.color;
+    setTimeout(()=>{
 
-        document.body.style.background =
-            `linear-gradient(135deg, ${category.color}25, white)`;
+        drawButton.innerHTML="⏳ 1...";
 
-        button.disabled = false;
+    },1000);
 
-    }, 1800);
+    setTimeout(showCategory,1800);
 
-});
+}
+
+function showCategory(){
+
+    const category = randomCategory();
+
+    categoryIcon.innerHTML = category.icon;
+
+    categoryTitle.innerHTML = category.title;
+
+    categoryDescription.innerHTML = category.description;
+
+    result.style.background = category.color;
+
+    result.classList.remove("hidden");
+
+    document.body.style.background =
+    `linear-gradient(135deg, ${category.color}22, white)`;
+
+    drawButton.innerHTML = "➡️ Nächste Runde";
+
+    drawButton.disabled = false;
+
+    drawButton.removeEventListener("click", startDraw);
+    drawButton.addEventListener("click", nextRound, {once:true});
+
+}
+
+function nextRound(){
+
+    round++;
+
+    roundNumber.innerHTML = round;
+
+    drawButton.innerHTML = "🎲 Kategorie auslosen";
+
+    drawButton.removeEventListener("click", nextRound);
+
+    drawButton.addEventListener("click", startDraw);
+
+}
