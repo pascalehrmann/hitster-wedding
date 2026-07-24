@@ -4,16 +4,16 @@ const categories = [
     icon: "👶",
     color: "#4F8CFF",
     description: `
-        👶 bis 1993<br>
-        💚 1994–2010<br>
-        🏡 2011–2017<br>
-        🏠 2018–2024<br>
-        💍 ab 2025
+        👶 Vor ihrer Geburt (bis 1993)<br>
+        💚 Vor ihrer Beziehung (1994–2010)<br>
+        🏡 Vor dem Zusammenziehen (2011–2017)<br>
+        🏠 Nach dem Zusammenziehen (2018–2024)<br>
+        💍 Nach der Verlobung (ab 2025)
     `
 },
 {
     title: "±3 JAHRE",
-    icon: "📅",
+    icon: "🗓️",
     color: "#FFD84D",
     description: "Schätze das Erscheinungsjahr des Songs (±3 Jahre)."
 },
@@ -37,11 +37,9 @@ const categories = [
 }
 ];
 
-// ---------- Elemente ----------
+// ----- Elemente -----
 
 const button = document.getElementById("drawButton");
-const resetButton = document.getElementById("resetButton");
-
 const ball = document.getElementById("ball");
 
 const result = document.getElementById("result");
@@ -49,13 +47,7 @@ const icon = document.getElementById("icon");
 const title = document.getElementById("title");
 const description = document.getElementById("description");
 
-const songCounter = document.getElementById("songCounter");
-
-// ---------- Songs ----------
-
-let songs = 0;
-
-// ---------- Beutel ----------
+// ----- Faire Zufallsverteilung -----
 
 let bag = [];
 
@@ -91,7 +83,7 @@ function shuffle(array){
 
 refillBag();
 
-// ---------- Ziehen ----------
+// ----- Klick -----
 
 button.addEventListener("click", () => {
 
@@ -102,8 +94,6 @@ button.addEventListener("click", () => {
     }
 
     button.disabled = true;
-
-    result.style.display = "none";
 
     ball.classList.remove("spin");
     void ball.offsetWidth;
@@ -117,33 +107,14 @@ button.addEventListener("click", () => {
         title.innerHTML = category.title;
         description.innerHTML = category.description;
 
-        result.style.background = category.color;
         result.style.display = "block";
+        result.style.background = category.color;
 
         document.body.style.background =
             `linear-gradient(135deg, ${category.color}25, white)`;
 
-        songs++;
-        songCounter.textContent = songs;
-
         button.disabled = false;
 
     }, 1800);
-
-});
-
-// ---------- Neues Spiel ----------
-
-resetButton.addEventListener("click", () => {
-
-    songs = 0;
-    songCounter.textContent = "0";
-
-    refillBag();
-
-    result.style.display = "none";
-
-    document.body.style.background =
-        "linear-gradient(135deg,#EEF6FF,#FFF7FC)";
 
 });
