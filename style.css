@@ -31,17 +31,13 @@ body{
 
 .container{
 
-    width:min(700px,95vw);
+    min-height:calc(100vh - 40px);
 
-    background:white;
+    display:flex;
 
-    padding:22px;
+    flex-direction:column;
 
-    border-radius:26px;
-
-    text-align:center;
-
-    box-shadow:0 18px 40px rgba(0,0,0,.15);
+    justify-content:space-evenly;
 
 }
 
