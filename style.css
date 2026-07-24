@@ -26,7 +26,7 @@ body{
 
     min-height:100vh;
 
-    padding:12px;
+    padding:8px;
 
     transition:.4s;
 
@@ -34,23 +34,23 @@ body{
 
 .container{
 
-    width:min(680px,95vw);
+    width:min(620px,96vw);
 
     background:white;
 
-    padding:20px;
+    padding:14px;
 
-    border-radius:24px;
+    border-radius:20px;
 
     text-align:center;
 
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
 
 }
 
 h1{
 
-    font-size:32px;
+    font-size:26px;
 
     line-height:1.05;
 
@@ -73,17 +73,17 @@ h1{
 
     color:#777;
 
-    margin:6px 0 12px;
+    margin:4px 0 8px;
 
-    font-size:16px;
+    font-size:14px;
 
 }
 
 #ball{
 
-    font-size:140px;
+    font-size:100px;
 
-    margin-bottom:12px;
+    margin-bottom:8px;
 
 }
 
@@ -111,11 +111,11 @@ button{
 
     color:white;
 
-    padding:15px 26px;
+    padding:12px 20px;
 
-    border-radius:16px;
+    border-radius:14px;
 
-    font-size:19px;
+    font-size:17px;
 
     cursor:pointer;
 
@@ -125,9 +125,7 @@ button{
 
 button:hover{
 
-    transform:translateY(-3px);
-
-    box-shadow:0 10px 20px rgba(0,0,0,.15);
+    transform:translateY(-2px);
 
 }
 
@@ -135,37 +133,37 @@ button:hover{
 
     display:none;
 
-    margin-top:18px;
+    margin-top:12px;
 
     color:white;
 
-    border-radius:20px;
+    border-radius:16px;
 
-    padding:18px;
+    padding:14px;
 
-    animation:pop .35s ease;
+    animation:pop .3s ease;
 
 }
 
 #icon{
 
-    font-size:46px;
+    font-size:36px;
 
 }
 
 #title{
 
-    margin:8px 0;
+    margin:6px 0;
 
-    font-size:26px;
+    font-size:20px;
 
 }
 
 #description{
 
-    font-size:15px;
+    font-size:13px;
 
-    line-height:1.45;
+    line-height:1.35;
 
 }
 
@@ -184,76 +182,6 @@ button:hover{
         opacity:1;
 
         transform:scale(1);
-
-    }
-
-}
-
-@media(max-width:700px){
-
-    body{
-
-        padding:8px;
-
-    }
-
-    .container{
-
-        width:100%;
-
-        padding:16px;
-
-    }
-
-    h1{
-
-        font-size:28px;
-
-    }
-
-    .subtitle{
-
-        font-size:15px;
-
-        margin-bottom:8px;
-
-    }
-
-    #ball{
-
-        font-size:120px;
-
-        margin-bottom:8px;
-
-    }
-
-    button{
-
-        width:100%;
-
-        font-size:18px;
-
-        padding:14px;
-
-    }
-
-    #icon{
-
-        font-size:42px;
-
-    }
-
-    #title{
-
-        font-size:22px;
-
-    }
-
-    #description{
-
-        font-size:14px;
-
-        line-height:1.35;
 
     }
 
