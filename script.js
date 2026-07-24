@@ -37,7 +37,7 @@ const categories = [
 }
 ];
 
-// ----- Elemente -----
+// Elemente
 
 const ball = document.getElementById("ball");
 const ballText = document.getElementById("ballText");
@@ -47,7 +47,7 @@ const icon = document.getElementById("icon");
 const title = document.getElementById("title");
 const description = document.getElementById("description");
 
-// ----- Faire Zufallsverteilung -----
+// Faire Verteilung
 
 let bag = [];
 
@@ -57,7 +57,7 @@ function refillBag(){
 
     categories.forEach(category => {
 
-        for(let i = 0; i < 4; i++){
+        for(let i=0;i<4;i++){
 
             bag.push(category);
 
@@ -71,11 +71,11 @@ function refillBag(){
 
 function shuffle(array){
 
-    for(let i = array.length - 1; i > 0; i--){
+    for(let i=array.length-1;i>0;i--){
 
-        const j = Math.floor(Math.random() * (i + 1));
+        const j=Math.floor(Math.random()*(i+1));
 
-        [array[i], array[j]] = [array[j], array[i]];
+        [array[i],array[j]]=[array[j],array[i]];
 
     }
 
@@ -83,40 +83,44 @@ function shuffle(array){
 
 refillBag();
 
-// ----- Klick auf Discokugel -----
+// Klick
 
-ball.addEventListener("click", () => {
+ball.addEventListener("click",()=>{
 
-    if(bag.length === 0){
+    if(bag.length===0){
 
         refillBag();
 
     }
 
-    ball.style.pointerEvents = "none";
+    ball.style.pointerEvents="none";
+
+    ballText.innerHTML="🎵 Kategorie wird ausgelost...";
+
+    result.style.display="none";
 
     ball.classList.remove("spin");
     void ball.offsetWidth;
     ball.classList.add("spin");
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
-        const category = bag.pop();
+        const category=bag.pop();
 
-        icon.innerHTML = category.icon;
-        title.innerHTML = category.title;
-        description.innerHTML = category.description;
+        icon.innerHTML=category.icon;
+        title.innerHTML=category.title;
+        description.innerHTML=category.description;
 
-        result.style.display = "block";
-        result.style.background = category.color;
+        result.style.background=category.color;
+        result.style.display="block";
 
-        document.body.style.background =
+        document.body.style.background=
             `linear-gradient(135deg, ${category.color}25, white)`;
 
-        ball.style.pointerEvents = "auto";
+        ball.style.pointerEvents="auto";
 
-        ballText.innerHTML = "Erneut tippen für die nächste Kategorie";
+        ballText.innerHTML="Tippe für die nächste Kategorie";
 
-    }, 1800);
+    },1800);
 
 });
