@@ -1,28 +1,55 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hitster Wedding Bingo</title>
+    <title>Hitster Wedding Bingo</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div class="container">
+<div class="background-glow"></div>
 
-    <h1>HITSTER WEDDING BINGO</h1>
+<header>
 
-    <p class="subtitle">
+    <h1>
+        <span class="blue">H</span>
+        <span class="green">I</span>
+        <span class="yellow">T</span>
+        <span class="pink">S</span>
+        <span class="red">T</span>
+        <span class="blue">E</span>
+        <span class="green">R</span>
+    </h1>
+
+    <h2>WEDDING BINGO</h2>
+
+    <p class="edition">
         Gintare & Daniel Edition
     </p>
 
-    <div id="ball">
+</header>
+
+
+<div class="round">
+
+    Runde <span id="roundNumber">1</span>
+
+</div>
+
+
+<main>
+
+    <div id="discoball">
+
         🪩
+
     </div>
 
     <button id="drawButton">
@@ -31,19 +58,29 @@
 
     </button>
 
-    <div id="result">
 
-        <div id="icon"></div>
+    <section id="result" class="hidden">
 
-        <h2 id="title"></h2>
+        <div id="categoryIcon"></div>
 
-        <p id="description"></p>
+        <h3 id="categoryTitle"></h3>
 
-    </div>
+        <div id="categoryDescription"></div>
 
-</div>
+    </section>
+
+</main>
+
+
+<footer>
+
+    Wer zuerst fünf Felder waagerecht, senkrecht oder diagonal markiert hat,
+    ruft <strong>BINGO!</strong>
+
+</footer>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
