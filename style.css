@@ -99,31 +99,19 @@ h1{
 
 }
 
-/* ---------- Buttons ---------- */
-
-.button-group{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:15px;
-
-    flex-wrap:wrap;
-
-}
-
 button{
 
     border:none;
 
+    background:#111;
+
     color:white;
 
-    padding:18px 30px;
+    padding:18px 34px;
 
     border-radius:16px;
 
-    font-size:20px;
+    font-size:22px;
 
     cursor:pointer;
 
@@ -139,45 +127,11 @@ button:hover{
 
 }
 
-#drawButton{
-
-    background:#111;
-
-}
-
-#resetButton{
-
-    background:#999;
-
-    font-size:16px;
-
-    padding:15px 22px;
-
-}
-
-/* ---------- Song Counter ---------- */
-
-.counter{
-
-    margin-top:22px;
-
-    margin-bottom:25px;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    color:#666;
-
-}
-
-/* ---------- Ergebnis ---------- */
-
 #result{
 
     display:none;
 
-    margin-top:25px;
+    margin-top:35px;
 
     color:white;
 
@@ -226,44 +180,6 @@ button:hover{
         opacity:1;
 
         transform:scale(1);
-
-    }
-
-}
-
-@media(max-width:700px){
-
-    h1{
-
-        font-size:34px;
-
-    }
-
-    .subtitle{
-
-        font-size:18px;
-
-    }
-
-    #ball{
-
-        font-size:80px;
-
-    }
-
-    .button-group{
-
-        flex-direction:column;
-
-        align-items:center;
-
-    }
-
-    button{
-
-        width:100%;
-
-        max-width:320px;
 
     }
 
