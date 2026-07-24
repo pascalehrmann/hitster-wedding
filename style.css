@@ -26,7 +26,7 @@ body{
 
     min-height:100vh;
 
-    padding:20px 0;
+    padding:12px;
 
     transition:.4s;
 
@@ -34,25 +34,25 @@ body{
 
 .container{
 
-    width:min(680px,92vw);
+    width:min(680px,95vw);
 
     background:white;
 
-    padding:28px;
+    padding:20px;
 
-    border-radius:28px;
+    border-radius:24px;
 
     text-align:center;
 
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
 
 }
 
 h1{
 
-    font-size:38px;
+    font-size:32px;
 
-    line-height:1.1;
+    line-height:1.05;
 
     background:linear-gradient(
         90deg,
@@ -73,17 +73,17 @@ h1{
 
     color:#777;
 
-    margin:8px 0 20px;
+    margin:6px 0 12px;
 
-    font-size:18px;
+    font-size:16px;
 
 }
 
 #ball{
 
-    font-size:150px;
+    font-size:140px;
 
-    margin-bottom:20px;
+    margin-bottom:12px;
 
 }
 
@@ -111,11 +111,11 @@ button{
 
     color:white;
 
-    padding:16px 30px;
+    padding:15px 26px;
 
     border-radius:16px;
 
-    font-size:20px;
+    font-size:19px;
 
     cursor:pointer;
 
@@ -135,13 +135,13 @@ button:hover{
 
     display:none;
 
-    margin-top:22px;
+    margin-top:18px;
 
     color:white;
 
-    border-radius:22px;
+    border-radius:20px;
 
-    padding:24px;
+    padding:18px;
 
     animation:pop .35s ease;
 
@@ -149,23 +149,23 @@ button:hover{
 
 #icon{
 
-    font-size:52px;
+    font-size:46px;
 
 }
 
 #title{
 
-    margin:12px 0;
+    margin:8px 0;
 
-    font-size:30px;
+    font-size:26px;
 
 }
 
 #description{
 
-    font-size:17px;
+    font-size:15px;
 
-    line-height:1.6;
+    line-height:1.45;
 
 }
 
@@ -191,21 +191,31 @@ button:hover{
 
 @media(max-width:700px){
 
+    body{
+
+        padding:8px;
+
+    }
+
     .container{
 
-        padding:22px;
+        width:100%;
+
+        padding:16px;
 
     }
 
     h1{
 
-        font-size:32px;
+        font-size:28px;
 
     }
 
     .subtitle{
 
-        font-size:16px;
+        font-size:15px;
+
+        margin-bottom:8px;
 
     }
 
@@ -213,7 +223,7 @@ button:hover{
 
         font-size:120px;
 
-        margin-bottom:16px;
+        margin-bottom:8px;
 
     }
 
@@ -223,19 +233,27 @@ button:hover{
 
         font-size:18px;
 
-        padding:15px 20px;
+        padding:14px;
+
+    }
+
+    #icon{
+
+        font-size:42px;
 
     }
 
     #title{
 
-        font-size:26px;
+        font-size:22px;
 
     }
 
     #description{
 
-        font-size:16px;
+        font-size:14px;
+
+        line-height:1.35;
 
     }
 
