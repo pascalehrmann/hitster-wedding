@@ -22,9 +22,11 @@ body{
 
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-start;
 
     min-height:100vh;
+
+    padding:20px 0;
 
     transition:.4s;
 
@@ -32,11 +34,11 @@ body{
 
 .container{
 
-    width:min(700px,92vw);
+    width:min(680px,92vw);
 
     background:white;
 
-    padding:40px;
+    padding:28px;
 
     border-radius:28px;
 
@@ -48,7 +50,9 @@ body{
 
 h1{
 
-    font-size:44px;
+    font-size:38px;
+
+    line-height:1.1;
 
     background:linear-gradient(
         90deg,
@@ -69,17 +73,17 @@ h1{
 
     color:#777;
 
-    margin:12px 0 35px;
+    margin:8px 0 20px;
 
-    font-size:20px;
+    font-size:18px;
 
 }
 
 #ball{
 
-    font-size:180px;
+    font-size:150px;
 
-    margin-bottom:30px;
+    margin-bottom:20px;
 
 }
 
@@ -107,11 +111,11 @@ button{
 
     color:white;
 
-    padding:18px 34px;
+    padding:16px 30px;
 
     border-radius:16px;
 
-    font-size:22px;
+    font-size:20px;
 
     cursor:pointer;
 
@@ -131,13 +135,13 @@ button:hover{
 
     display:none;
 
-    margin-top:35px;
+    margin-top:22px;
 
     color:white;
 
     border-radius:22px;
 
-    padding:28px;
+    padding:24px;
 
     animation:pop .35s ease;
 
@@ -145,23 +149,23 @@ button:hover{
 
 #icon{
 
-    font-size:60px;
+    font-size:52px;
 
 }
 
 #title{
 
-    margin:15px 0;
+    margin:12px 0;
 
-    font-size:34px;
+    font-size:30px;
 
 }
 
 #description{
 
-    font-size:18px;
+    font-size:17px;
 
-    line-height:1.7;
+    line-height:1.6;
 
 }
 
@@ -171,7 +175,7 @@ button:hover{
 
         opacity:0;
 
-        transform:scale(.85);
+        transform:scale(.9);
 
     }
 
@@ -180,6 +184,58 @@ button:hover{
         opacity:1;
 
         transform:scale(1);
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .container{
+
+        padding:22px;
+
+    }
+
+    h1{
+
+        font-size:32px;
+
+    }
+
+    .subtitle{
+
+        font-size:16px;
+
+    }
+
+    #ball{
+
+        font-size:120px;
+
+        margin-bottom:16px;
+
+    }
+
+    button{
+
+        width:100%;
+
+        font-size:18px;
+
+        padding:15px 20px;
+
+    }
+
+    #title{
+
+        font-size:26px;
+
+    }
+
+    #description{
+
+        font-size:16px;
 
     }
 
