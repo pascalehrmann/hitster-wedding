@@ -1,63 +1,62 @@
 const categories = [
 {
-    title: "LEBENSPHASE",
-    icon: "👶",
-    color: "#4F8CFF",
-    description: `
-        👶 Vor ihrer Geburt (bis 1993)<br>
-        💚 Vor ihrer Beziehung (1994–2010)<br>
-        🏡 Vor dem Zusammenziehen (2011–2017)<br>
-        🏠 Nach dem Zusammenziehen (2018–2024)<br>
-        💍 Nach der Verlobung (ab 2025)
-    `
+title:"LEBENSPHASE",
+icon:"👶",
+color:"#4F8CFF",
+description:`
+👶 bis 1993<br>
+💚 1994–2010<br>
+🏡 2011–2017<br>
+🏠 2018–2024<br>
+💍 ab 2025`
 },
 {
-    title: "±3 JAHRE",
-    icon: "📅",
-    color: "#FFD84D",
-    description: "Schätze das Erscheinungsjahr des Songs (±3 Jahre)."
+title:"±3 JAHRE",
+icon:"📅",
+color:"#FFD84D",
+description:"Schätze das Erscheinungsjahr (±3 Jahre)."
 },
 {
-    title: "INTERPRET",
-    icon: "🎤",
-    color: "#38D26B",
-    description: "Nenne den Interpreten oder die Band."
+title:"INTERPRET",
+icon:"🎤",
+color:"#39D273",
+description:"Nenne den Interpreten oder die Band."
 },
 {
-    title: "SONGTITEL",
-    icon: "🎵",
-    color: "#FF5FB2",
-    description: "Nenne den Songtitel."
+title:"SONGTITEL",
+icon:"🎵",
+color:"#FF5FB2",
+description:"Nenne den Songtitel."
 },
 {
-    title: "URLAUBSORT",
-    icon: "🌍",
-    color: "#FF6A5F",
-    description: "Land, Stadt, Insel oder Ort, den Gintare & Daniel gemeinsam bereist haben."
+title:"URLAUBSORT",
+icon:"🌍",
+color:"#FF6A5F",
+description:"Land, Stadt, Insel oder Ort, den Gintare & Daniel gemeinsam bereist haben."
 }
 ];
 
-// ----- Elemente -----
+const button=document.getElementById("drawButton");
+const ball=document.getElementById("discoball");
 
-const button = document.getElementById("drawButton");
-const ball = document.getElementById("ball");
+const result=document.getElementById("result");
+const icon=document.getElementById("categoryIcon");
+const title=document.getElementById("categoryTitle");
+const description=document.getElementById("categoryDescription");
 
-const result = document.getElementById("result");
-const icon = document.getElementById("icon");
-const title = document.getElementById("title");
-const description = document.getElementById("description");
+const counter=document.getElementById("roundNumber");
 
-// ----- Faire Zufallsverteilung -----
+// ---------- Beutel ----------
 
-let bag = [];
+let bag=[];
 
-function refillBag(){
+function createBag(){
 
-    bag = [];
+    bag=[];
 
-    categories.forEach(category => {
+    categories.forEach(category=>{
 
-        for(let i = 0; i < 4; i++){
+        for(let i=0;i<4;i++){
 
             bag.push(category);
 
@@ -71,50 +70,89 @@ function refillBag(){
 
 function shuffle(array){
 
-    for(let i = array.length - 1; i > 0; i--){
+    for(let i=array.length-1;i>0;i--){
 
-        const j = Math.floor(Math.random() * (i + 1));
+        const j=Math.floor(Math.random()*(i+1));
 
-        [array[i], array[j]] = [array[j], array[i]];
+        [array[i],array[j]]=[array[j],array[i]];
 
     }
 
 }
 
-refillBag();
+createBag();
 
-// ----- Klick -----
+let songs=0;
 
-button.addEventListener("click", () => {
+// ---------- Ziehen ----------
 
-    if(bag.length === 0){
+button.addEventListener("click",drawCategory);
 
-        refillBag();
+function drawCategory(){
+
+    if(bag.length===0){
+
+        createBag();
 
     }
 
-    button.disabled = true;
+    button.disabled=true;
+
+    result.classList.add("hidden");
 
     ball.classList.remove("spin");
+
     void ball.offsetWidth;
+
     ball.classList.add("spin");
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
-        const category = bag.pop();
+        const category=bag.pop();
 
-        icon.innerHTML = category.icon;
-        title.innerHTML = category.title;
-        description.innerHTML = category.description;
+        icon.innerHTML=category.icon;
 
-        result.style.display = "block";
-        result.style.background = category.color;
+        title.innerHTML=category.title;
 
-        document.body.style.background =
-            `linear-gradient(135deg, ${category.color}25, white)`;
+        description.innerHTML=category.description;
 
-        button.disabled = false;
+        result.style.background=category.color;
 
-    }, 1800);
+        result.classList.remove("hidden");
+
+        document.body.style.background=
+        `linear-gradient(135deg,${category.color}22,#ffffff)`;
+
+        songs++;
+
+        counter.innerHTML=songs;
+
+        button.disabled=false;
+
+    },1600);
+
+}
+
+// ---------- Neues Spiel ----------
+
+const reset=document.createElement("button");
+
+reset.innerHTML="🔄 Neues Spiel";
+
+reset.style.marginLeft="12px";
+
+button.parentNode.appendChild(reset);
+
+reset.addEventListener("click",()=>{
+
+    songs=0;
+
+    counter.innerHTML=0;
+
+    createBag();
+
+    result.classList.add("hidden");
+
+    document.body.style.background="linear-gradient(135deg,#eef7ff,#fff7fc)";
 
 });
