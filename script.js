@@ -13,7 +13,7 @@ const categories = [
 },
 {
     title: "±3 JAHRE",
-    icon: "🗓️",
+    icon: "📅",
     color: "#FFD84D",
     description: "Schätze das Erscheinungsjahr des Songs (±3 Jahre)."
 },
@@ -39,8 +39,8 @@ const categories = [
 
 // ----- Elemente -----
 
-const button = document.getElementById("drawButton");
 const ball = document.getElementById("ball");
+const ballText = document.getElementById("ballText");
 
 const result = document.getElementById("result");
 const icon = document.getElementById("icon");
@@ -83,9 +83,9 @@ function shuffle(array){
 
 refillBag();
 
-// ----- Klick -----
+// ----- Klick auf Discokugel -----
 
-button.addEventListener("click", () => {
+ball.addEventListener("click", () => {
 
     if(bag.length === 0){
 
@@ -93,7 +93,7 @@ button.addEventListener("click", () => {
 
     }
 
-    button.disabled = true;
+    ball.style.pointerEvents = "none";
 
     ball.classList.remove("spin");
     void ball.offsetWidth;
@@ -113,7 +113,9 @@ button.addEventListener("click", () => {
         document.body.style.background =
             `linear-gradient(135deg, ${category.color}25, white)`;
 
-        button.disabled = false;
+        ball.style.pointerEvents = "auto";
+
+        ballText.innerHTML = "Erneut tippen für die nächste Kategorie";
 
     }, 1800);
 
