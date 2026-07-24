@@ -4,11 +4,11 @@ const categories = [
     icon: "👶",
     color: "#4F8CFF",
     description: `
-        👶 bis 1993<br>
-        💚 1994–2010<br>
-        🏡 2011–2017<br>
-        🏠 2018–2024<br>
-        💍 ab 2025
+        👶 Vor ihrer Geburt (bis 1993)<br>
+        💚 Vor ihrer Beziehung (1994–2010)<br>
+        🏡 Vor dem Zusammenziehen (2011–2017)<br>
+        🏠 Nach dem Zusammenziehen (2018–2024)<br>
+        💍 Nach der Verlobung (ab 2025)
     `
 },
 {
@@ -20,7 +20,7 @@ const categories = [
 {
     title: "INTERPRET",
     icon: "🎤",
-    color: "#39D273",
+    color: "#38D26B",
     description: "Nenne den Interpreten oder die Band."
 },
 {
@@ -37,103 +37,84 @@ const categories = [
 }
 ];
 
-const drawButton = document.getElementById("drawButton");
-const discoball = document.getElementById("discoball");
+// ----- Elemente -----
+
+const button = document.getElementById("drawButton");
+const ball = document.getElementById("ball");
 
 const result = document.getElementById("result");
-const categoryIcon = document.getElementById("categoryIcon");
-const categoryTitle = document.getElementById("categoryTitle");
-const categoryDescription = document.getElementById("categoryDescription");
+const icon = document.getElementById("icon");
+const title = document.getElementById("title");
+const description = document.getElementById("description");
 
-const roundNumber = document.getElementById("roundNumber");
+// ----- Faire Zufallsverteilung -----
 
-let round = 1;
-let lastCategory = null;
+let bag = [];
 
-function randomCategory(){
+function refillBag(){
 
-    let next;
+    bag = [];
 
-    do{
+    categories.forEach(category => {
 
-        next = categories[Math.floor(Math.random()*categories.length)];
+        for(let i = 0; i < 4; i++){
 
-    }while(next === lastCategory);
+            bag.push(category);
 
-    lastCategory = next;
+        }
 
-    return next;
+    });
 
-}
-
-drawButton.addEventListener("click", startDraw);
-
-function startDraw(){
-
-    drawButton.disabled = true;
-
-    result.classList.add("hidden");
-
-    discoball.classList.remove("spin");
-
-    void discoball.offsetWidth;
-
-    discoball.classList.add("spin");
-
-    drawButton.innerHTML = "⏳ 3...";
-
-    setTimeout(()=>{
-
-        drawButton.innerHTML="⏳ 2...";
-
-    },500);
-
-    setTimeout(()=>{
-
-        drawButton.innerHTML="⏳ 1...";
-
-    },1000);
-
-    setTimeout(showCategory,1800);
+    shuffle(bag);
 
 }
 
-function showCategory(){
+function shuffle(array){
 
-    const category = randomCategory();
+    for(let i = array.length - 1; i > 0; i--){
 
-    categoryIcon.innerHTML = category.icon;
+        const j = Math.floor(Math.random() * (i + 1));
 
-    categoryTitle.innerHTML = category.title;
+        [array[i], array[j]] = [array[j], array[i]];
 
-    categoryDescription.innerHTML = category.description;
-
-    result.style.background = category.color;
-
-    result.classList.remove("hidden");
-
-    document.body.style.background =
-    `linear-gradient(135deg, ${category.color}22, white)`;
-
-    drawButton.innerHTML = "➡️ Nächste Runde";
-
-    drawButton.disabled = false;
-
-    drawButton.removeEventListener("click", startDraw);
-    drawButton.addEventListener("click", nextRound, {once:true});
+    }
 
 }
 
-function nextRound(){
+refillBag();
 
-    round++;
+// ----- Klick -----
 
-    roundNumber.innerHTML = round;
+button.addEventListener("click", () => {
 
-    drawButton.innerHTML = "🎲 Kategorie auslosen";
+    if(bag.length === 0){
 
-    drawButton.removeEventListener("click", nextRound);
+        refillBag();
 
-    drawButton.addEventListener("click", startDraw);
+    }
 
-}
+    button.disabled = true;
+
+    ball.classList.remove("spin");
+    void ball.offsetWidth;
+    ball.classList.add("spin");
+
+    setTimeout(() => {
+
+        const category = bag.pop();
+
+        icon.innerHTML = category.icon;
+        title.innerHTML = category.title;
+        description.innerHTML = category.description;
+
+        result.style.display = "block";
+        result.style.background = category.color;
+
+        document.body.style.background =
+            `linear-gradient(135deg, ${category.color}25, white)`;
+
+        button.disabled = false;
+
+    }, 1800);
+
+});
